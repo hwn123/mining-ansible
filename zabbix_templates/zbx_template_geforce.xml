@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>3.4</version>
+    <date>2018-09-26T16:14:25Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template GPU NVidia</template>
+            <name>Template GPU NVidia</name>
+            <description/>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications/>
+            <items/>
+            <discovery_rules/>
+            <httptests/>
+            <macros/>
+            <templates>
+                <template>
+                    <name>Template GPU stats</name>
+                </template>
+            </templates>
+            <screens/>
+        </template>
+    </templates>
+    <triggers>
+        <trigger>
+            <expression>{Template GPU NVidia:log[/var/log/miner/resens.log,&quot;temp1:([0-9.]+)&quot;,,,,\1].avg(5m)}&gt;85 or&#13;
+{Template GPU NVidia:log[/var/log/miner/resens.log,&quot;temp2:([0-9.]+)&quot;,,,,\1].avg(5m)}&gt;85 or&#13;
+{Template GPU NVidia:log[/var/log/miner/resens.log,&quot;temp3:([0-9.]+)&quot;,,,,\1].avg(5m)}&gt;85 or&#13;
+{Template GPU NVidia:log[/var/log/miner/resens.log,&quot;temp4:([0-9.]+)&quot;,,,,\1].avg(5m)}&gt;85 or&#13;
+{Template GPU NVidia:log[/var/log/miner/resens.log,&quot;temp5:([0-9.]+)&quot;,,,,\1].avg(5m)}&gt;85 or&#13;
+{Template GPU NVidia:log[/var/log/miner/resens.log,&quot;temp6:([0-9.]+)&quot;,,,,\1].avg(5m)}&gt;85</expression>
+            <recovery_mode>0</recovery_mode>
+            <recovery_expression/>
+            <name>Temperature over 85  on {HOST.NAME}</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>4</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>0</manual_close>
+            <dependencies/>
+            <tags/>
+        </trigger>
+    </triggers>
+</zabbix_export>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>3.4</version>
+    <date>2018-09-26T16:13:40Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template GPU RX470</template>
+            <name>Template GPU RX470</name>
+            <description/>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications/>
+            <items/>
+            <discovery_rules/>
+            <httptests/>
+            <macros/>
+            <templates>
+                <template>
+                    <name>Template GPU stats</name>
+                </template>
+            </templates>
+            <screens/>
+        </template>
+    </templates>
+    <triggers>
+        <trigger>
+            <expression>{Template GPU RX470:log[/var/log/miner/resens.log,&quot;temp2:([0-9.]+)&quot;,,,,\1].avg(5m)}&gt;78 or&#13;
+{Template GPU RX470:log[/var/log/miner/resens.log,&quot;temp1:([0-9.]+)&quot;,,,,\1].avg(5m)}&gt;78&#13;
+or&#13;
+{Template GPU RX470:log[/var/log/miner/resens.log,&quot;temp3:([0-9.]+)&quot;,,,,\1].avg(5m)}&gt;78&#13;
+or&#13;
+{Template GPU RX470:log[/var/log/miner/resens.log,&quot;temp4:([0-9.]+)&quot;,,,,\1].avg(5m)}&gt;78&#13;
+or&#13;
+{Template GPU RX470:log[/var/log/miner/resens.log,&quot;temp5:([0-9.]+)&quot;,,,,\1].avg(5m)}&gt;78&#13;
+or&#13;
+{Template GPU RX470:log[/var/log/miner/resens.log,&quot;temp6:([0-9.]+)&quot;,,,,\1].avg(5m)}&gt;78</expression>
+            <recovery_mode>0</recovery_mode>
+            <recovery_expression/>
+            <name>Temperature over 78  on {HOST.NAME}</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>4</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>0</manual_close>
+            <dependencies/>
+            <tags/>
+        </trigger>
+    </triggers>
+</zabbix_export>
