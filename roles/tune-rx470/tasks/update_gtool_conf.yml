@@ -1,0 +1,22 @@
+- name: copy gtool mem conf
+  become: true
+  copy:
+    src: "{{ mclock_conf }}"
+    dest: "/opt/mine/gtool/mclock.conf"
+  register: mclock
+
+- name: copy gtool cvolt conf
+  become: true
+  copy:
+    src: "{{ cvolt_conf }}"
+    dest: "/opt/mine/gtool/cvolt.conf"
+  register: cvolt
+
+- name: Restart server
+  become: true
+  command: /sbin/shutdown -r +1
+  async: 0
+  poll: 0
+  ignore_errors: true
+  when: mclock.changed or cvolt.changed
+

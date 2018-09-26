@@ -1,0 +1,36 @@
+- name: create folder
+  become: true
+  file:
+    path: /opt/mine/gtool
+    state: directory
+    recurse: "yes"
+  
+- name: copy gtool bin
+  become: true
+  copy:
+    src: "{{ item }}"
+    dest: "/opt/mine/gtool/{{ item | basename }}"
+  with_fileglob:
+    files/gtool/*
+
+- name: set executable bit
+  become: true
+  file:
+    path: /opt/mine/gtool/ohgodatool
+    mode: 775
+
+- name: Add tuneamd service
+  become: true
+  template:
+    src: files/tuneamd.service
+    dest: /etc/systemd/system/tuneamd.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: enable tuneamd.service
+  become: true
+  systemd:
+    daemon_reload: yes
+    name: tuneamd
+    enabled: yes

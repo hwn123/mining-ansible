@@ -1,0 +1,19 @@
+- hosts: all
+  roles:
+  - common
+
+- hosts: miners
+  roles:
+  - mine-update
+
+- hosts: amd
+  roles:  
+  - monitor-amd
+
+- hosts: nv
+  roles:
+  - monitor-nv
+
+- hosts: rx470
+  roles:
+  - tune-rx470

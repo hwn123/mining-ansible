@@ -1,0 +1,12 @@
+- hosts: all
+  roles:
+  - common
+
+- hosts: miners
+  roles:
+ # - mine-update
+ # - monitor-amd
+#  - test
+#  - clean
+#  - mine-update
+  - test

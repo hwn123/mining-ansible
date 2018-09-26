@@ -1,0 +1,24 @@
+- name: create folder
+  become: true
+  file:
+    path: /opt/mine/clay
+    state: directory
+    recurse: "yes"
+  
+- name: copy claymore bin
+  become: true
+  copy:
+    src: "{{ item }}"
+    dest: "/opt/mine/clay/{{ item | basename }}"
+  with_fileglob:
+    files/clay/*
+
+- name: set executable bit
+  become: true
+  file:
+    path: /opt/mine/clay/ethdcrminer64
+    mode: 775
+
+- include_tasks: update_claymore_config.yml
+
+

@@ -1,0 +1,2 @@
+mclock_conf : files/gtool_conf/mclock2150.conf
+cvolt_conf : files/gtool_conf/cvolt950.conf

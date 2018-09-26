@@ -1,0 +1,23 @@
+- name: create folder
+  become: true
+  file:
+    path: /opt/mine/gtool
+    state: directory
+    recurse: "yes"
+  
+- name: copy gtool bin
+  become: true
+  copy:
+    src: "{{ item }}"
+    dest: "/opt/mine/gtool/{{ item | basename }}"
+  with_fileglob:
+    files/gtool/*
+
+- name: set executable bit
+  become: true
+  file:
+    path: /opt/mine/gtool/ohgodatool
+    mode: 775
+
+
+

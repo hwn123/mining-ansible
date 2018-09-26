@@ -1,0 +1,26 @@
+- name: Update zabbix_agentd.conf
+  become: true
+  template:
+    src: files/zabbix_agentd.conf
+    dest: /etc/zabbix/zabbix_agentd.conf
+    owner: zabbix
+    group: zabbix
+    mode: 0640
+  register: agentdconf
+
+- name: Add radeon user parameters config
+  become: true
+  template:
+    src: files/amdgpu.conf
+    dest: /etc/zabbix/zabbix_agentd.d/amdgpu.conf
+    owner: zabbix
+    group: zabbix
+    mode: 0640
+  register: amdgpu
+
+- name: Stop service zabbix-agent, if running
+  become: true
+  service:
+    name: zabbix-agent
+    state: restarted
+  when: amdgpu.changed or agentdconf

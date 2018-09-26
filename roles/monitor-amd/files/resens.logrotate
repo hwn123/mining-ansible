@@ -1,0 +1,8 @@
+/var/log/miner/resens.log {
+    daily
+    rotate 12
+    compress
+    delaycompress
+    missingok
+    notifempty
+}

@@ -1,0 +1,24 @@
+[Unit]
+Description=claymore
+Conflicts=zclaymore.service
+Requires=multi-user.target
+After=multi-user.target
+[Service]
+Environment=GPU_FORCE_64BIT_PTR=1
+Environment=GPU_MAX_HEAP_SIZE=100
+Environment=GPU_USE_SYNC_OBJECTS=1
+Environment=GPU_MAX_ALLOC_PERCENT=100
+Environment=GPU_SINGLE_ALLOC_PERCENT=100
+User=root
+WorkingDirectory=/opt/mine/clay/
+ExecStart=/opt/mine/clay/ethdcrminer64 -epool eth-eu1.nanopool.org:9999 \
+-ewal 0x1b61f105741cf482gdfgfdgfdgfd7c4.%H/email@gmail.com -epsw x \
+-mode 1  \
+-r 1 \
+#-dpool stratum+tcp://dcr.suprnova.cc:3252 \
+#-dwal adasfds.fafdsf -dpsw fgdsgdfgfd \
+-mport 127.0.0.1:-3333 \
+-logfile /var/log/miner/claymore.log
+Restart=on-failure
+[Install]
+WantedBy=multi-user.target

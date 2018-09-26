@@ -1,0 +1,23 @@
+- name: create folder
+  become: true
+  file:
+    path: /opt/mine/atiflash/backup
+    state: directory
+    recurse: "yes"
+  
+- name: copy claymore bin
+  become: true
+  copy:
+    src: "{{ item }}"
+    dest: "/opt/mine/atiflash/{{ item | basename }}"
+  with_fileglob:
+    files/atiflash/*
+
+- name: set executable bit
+  become: true
+  file:
+    path: /opt/mine/atiflash/atiflash
+    mode: 775
+
+
+

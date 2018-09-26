@@ -1,0 +1,13 @@
+#Update zabbix config
+#- include_tasks: update_zabbix_claymore.yml
+#- include_tasks: update_zabbix_config.yml
+#- include_tasks: update_claymore_config.yml
+
+#- include_tasks: install_atiflash.yml
+
+#- include_tasks: enable_claymore.yml
+#- include_tasks: install_rocm.yml
+#- include_tasks: install_gtool.yml
+#- include_tasks: remove_resens.yml
+#- include_tasks: restart_rsyslog.yml
+- include_tasks: update_gtool_conf.yml

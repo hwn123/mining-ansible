@@ -1,0 +1,5 @@
+- name: Clean resens.log
+  become: true
+  file:
+    path: /var/log/miner/resens.log
+    state: absent

@@ -1,0 +1,44 @@
+- name: Add radeon user parameters config
+  become: true
+  template:
+    src: files/gpu.conf
+    dest: /etc/zabbix/zabbix_agentd.d/gpu.conf
+    owner: zabbix
+    group: zabbix
+    mode: 0640
+  register: amdgpu
+
+- name: Update zabbix config
+  become: true
+  template:
+    src: "{{ zabbix_agentd_conf }}"
+    dest: /etc/zabbix/zabbix_agentd.conf
+    owner: zabbix
+    group: zabbix
+    mode: 0640
+  register: zabbixconf
+
+
+- name: Add zabbix to adm group
+  become: true
+  user:
+    name: zabbix
+    groups: adm
+    append: yes
+
+- name: Create /var/log/miner
+  become: true
+  file:
+    path: /var/log/miner
+    state: directory
+    mode: 0755
+    owner: syslog
+    group: adm
+
+- name: Stop service zabbix-agent, if running
+  become: true
+  service:
+    name: zabbix-agent
+    state: restarted
+  when: amdgpu.changed or zabbixconf.changed
+

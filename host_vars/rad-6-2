@@ -1,0 +1,2 @@
+mclock_conf : files/gtool_conf/mclock_rad-6-2.conf
+cvolt_conf : files/gtool_conf/cvolt_rad-6-2.conf

@@ -1,0 +1,23 @@
+- name: force systemd to reread configs
+  become: true
+  systemd: daemon_reload=yes
+  ignore_errors: yes
+
+- name: stop and disable ethminer
+  become: true
+  systemd: name=ethminer enabled=no state=stopped
+  ignore_errors: yes
+
+- name: stop and disable ewbf
+  become: true
+  systemd: name=ewbf enabled=no state=stopped
+  ignore_errors: yes
+
+- name: stop and disable zclay
+  become: true
+  systemd: name=zclaymore enabled=no state=stopped  
+  ignore_errors: yes
+
+- name: enable and start clay
+  become: true
+  systemd: name=claymore enabled=yes state=restarted

@@ -1,0 +1,23 @@
+- name: Install the package "jq"
+  become: true
+  apt:
+    name: jq
+    state: present
+
+- name: update claymore.conf 
+  become: true
+  template:
+    src: files/claymore.conf
+    dest: /etc/zabbix/zabbix_agentd.d/claymore.conf
+    owner: zabbix
+    group: zabbix
+    mode: 0640
+  register: configs
+
+- name: Restart service zabbix-agent, if chaged
+  become: true
+  service:
+    name: zabbix-agent
+    state: restarted
+  when: configs.changed
+

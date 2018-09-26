@@ -1,0 +1,11 @@
+[Unit]
+Description=OC and undervolt radeon cards
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/mine/gtool/
+ExecStart=/usr/bin/python /opt/mine/gtool/burn.py
+
+[Install]
+WantedBy=multi-user.target

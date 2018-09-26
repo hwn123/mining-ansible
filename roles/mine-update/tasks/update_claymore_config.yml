@@ -1,0 +1,27 @@
+- name: Update claymore service
+  become: true
+  template:
+    src: "{{ claymore_srv }}"
+    dest: /etc/systemd/system/claymore.service
+    owner: root
+    group: root
+    mode: 0644
+  register: claymoreservice
+
+- name: Update claymore reboot.bash
+  become: true
+  template:
+    src: files/reboot.bash
+    dest: /opt/mine/clay/reboot.bash
+    owner: root
+    group: root
+    mode: 0744
+  register: rebootbash
+
+- name: force systemd to reread configs 
+  become: true
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: claymore
+  when: claymoreservice.changed or rebootbash.changed

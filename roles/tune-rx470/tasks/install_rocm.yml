@@ -1,0 +1,21 @@
+- name: create folder
+  become: true
+  file:
+    path: /opt/mine/rocm
+    state: directory
+    recurse: "yes"
+  
+- name: copy rocm py
+  become: true
+  copy:
+    src: "files/rocm_smi.py"
+    dest: "/opt/mine/rocm/rocm_smi.py"
+
+- name: set executable bit
+  become: true
+  file:
+    path: /opt/mine/rocm/rocm_smi.py
+    mode: 775
+
+
+

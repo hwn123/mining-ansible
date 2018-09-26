@@ -1,0 +1,2 @@
+- include_tasks: install_rocm.yml
+- include_tasks: install_resens.yml

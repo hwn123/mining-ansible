@@ -1,0 +1,16 @@
+- name: update 30-clay.conf
+  become: true
+  template:
+    src: files/30-clay.conf
+    dest: /etc/rsyslog.d/30-clay.conf
+    owner: root
+    group: root
+    mode: 0644
+  register: clayconf
+
+- name: Restart service rsyslog, if chaged
+  become: true
+  service:
+    name: rsyslog
+    state: restarted
+  when: clayconf.changed

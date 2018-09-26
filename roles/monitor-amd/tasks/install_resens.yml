@@ -1,0 +1,44 @@
+- name: update rsyslog 
+  become: true
+  template:
+    src: files/33-resens.conf
+    dest: /etc/rsyslog.d/33-resens.conf
+    owner: root
+    group: root
+    mode: 0644
+  register: resensconf
+
+- name: Restart service rsyslog, if chaged
+  become: true
+  service:
+    name: rsyslog
+    state: restarted
+  when: resensconf.changed
+
+- name: update logrotate
+  become: true
+  template:
+    src: files/resens.logrotate
+    dest: /etc/logrotate.d/resens
+    owner: root
+    group: root
+    mode: 0644
+
+- name: create folder
+  become: true
+  file:
+    path: /opt/mine/monitor
+    state: directory
+    recurse: "yes"
+
+- name: copy resens py
+  become: true
+  copy:
+    src: "files/resens.py"
+    dest: "/opt/mine/monitor/resens.py"
+
+- name: set executable bit
+  become: true
+  file:
+    path: /opt/mine/monitor/resens.py
+    mode: 775
