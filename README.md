@@ -26,3 +26,4 @@ Ansible playbooks for eth mining autoconfiguration
 * test - used for test. Some tasks that were used for experiments
 
 ## Troubleshooting
+This repo is a copy of ansible playbooks which were succesfully used. But I had to remove some private data, files, configs and it might have become broken. Playbooks may contain errors and do not work. This repo have not been tested. 
