@@ -24,6 +24,10 @@ Ansible playbooks for eth mining autoconfiguration
 * reboot-soft - gently restarts.
 * tune-rx470 - installs ohgodatool and configures it.
 * test - used for test. Some tasks that were used for experiments
+### Zabbix templates
+* zbx_template_gpustats - GPU(both amd and nv) fan\temp items and graphs for maximum 6 GPU.
+* zbx_template_radeon, zbx_template_geforce - triggers.
+* zbx_template_claymore - hashrate and triggers for eth\zcash
 
 ## Troubleshooting
 This repo is a copy of ansible playbooks which were succesfully used. But I had to remove some private data, files, configs and it might have become broken. Playbooks may contain errors and do not work. This repo have not been tested. 
